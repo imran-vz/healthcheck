@@ -1,0 +1,26 @@
+{
+  "name": "healthcheck",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "typecheck": "tsc --noEmit",
+    "db:migrate:local": "wrangler d1 migrations apply healthcheck --local",
+    "db:migrate": "wrangler d1 migrations apply healthcheck --remote",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260702.1",
+    "@types/node": "^24.19.2",
+    "typescript": "^7.0.2",
+    "vite-plus": "^1.4.0",
+    "wrangler": "^4.155.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.16.1",
+      "onFail": "download"
+    }
+  }
+}

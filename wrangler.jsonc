@@ -1,0 +1,32 @@
+{
+  "name": "healthcheck",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "triggers": {
+    // Look for overdue checks once a minute.
+    "crons": ["* * * * *"],
+  },
+  "routes": [{ "pattern": "hc.imran.codes", "custom_domain": true }],
+  "send_email": [{ "name": "EMAIL" }],
+  "ratelimits": [
+    {
+      "name": "RATE_LIMITER",
+      "namespace_id": "1001",
+      // Per client IP. Windows can only be 10 or 60 seconds.
+      "simple": { "limit": 60, "period": 60 },
+    },
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "healthcheck",
+      // Replace with the ID printed by `vp exec wrangler d1 create healthcheck`.
+      "database_id": "00000000-0000-0000-0000-000000000000",
+    },
+  ],
+  "vars": {
+    // Must be on a domain with Cloudflare Email Routing enabled. This is the subdomain
+    // because imran.codes receives its mail through Zoho.
+    "EMAIL_FROM": "alerts@hc.imran.codes",
+  },
+}
