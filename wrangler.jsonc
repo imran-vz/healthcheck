@@ -20,8 +20,7 @@
     {
       "binding": "DB",
       "database_name": "healthcheck",
-      // Replace with the ID printed by `vp exec wrangler d1 create healthcheck`.
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "e7aea90a-5dae-4cf3-88d2-930a306fe411",
     },
   ],
   "vars": {
